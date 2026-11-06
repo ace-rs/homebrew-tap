@@ -45,10 +45,29 @@ IDs to your control.
 
 The project's repos. Folder `.` is this folder's own repo.
 
-| Folder | What it is | Commands |
-| ------ | ---------- | -------- |
-| .      |            |          |
+| Folder | What it is                                                    | Commands                 |
+| ------ | ------------------------------------------------------------- | ------------------------ |
+| .      | Homebrew tap for the `ace` CLI; one formula, `Formula/ace.rb` | `ruby -c Formula/ace.rb` |
 
 ## Practices
 
-Project practices (commit style, test commands, docs) go here.
+- `Formula/ace.rb` installs the prebuilt `ace-aarch64-apple-darwin` binary from the
+  `ace-rs/ace` GitHub release (arm64 macOS only). `livecheck` reads
+  `https://ace-rs.dev/latest`.
+- A release bump changes `version`, the `url` tag and `sha256` together. Take the
+  checksum from the published release asset, never from a local build: a mismatch breaks
+  every install.
+- Checks: `ruby -c Formula/ace.rb` for syntax. `brew style Formula/ace.rb` and
+  `brew audit` are run by a maintainer, not by agents.
+- Commit messages: a release bump is the bare tag, `vX.Y.Z`. Any other change gets a
+  short imperative summary naming what it fixes.
+- One branch, `main`. Pushing publishes the formula to every user of the tap, so it needs
+  the user's word.
+- Durable docs: none. This file carries the orientation.
+
+## Git checkpoints
+
+Commit coherent, completed slices autonomously after completing the checks required for
+that work. Do not ask for permission to make a local commit. A local commit does not
+authorize pushing, publishing, merging, releasing, deploying, or any other change to
+shared or external state; each requires separate user authorization.
