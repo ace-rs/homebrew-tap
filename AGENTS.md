@@ -21,10 +21,6 @@ current state, and take no new work until it sends a task.
 Keep machine names, local paths, agent names and memory project names out of every
 committed file.
 
-### Rulings
-
-(none yet)
-
 ### Processes
 
 Run every long-running process (dev server, preview server, test server, watcher) in a
